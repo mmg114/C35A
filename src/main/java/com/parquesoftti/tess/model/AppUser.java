@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Data
@@ -31,4 +33,7 @@ public class AppUser {
     private LocalDateTime createdAt;
     @Column
     private LocalDateTime updatedAt;
+
+    @ManyToMany(mappedBy = "roles")
+    private Set<Role> roles = new HashSet<>();
 }
