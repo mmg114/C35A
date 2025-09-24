@@ -31,6 +31,15 @@ public class AppUserController {
         return  appUserService.getAppUser( id);
     }
 
+    @PostMapping()
+    AppUser saveAppUser(@RequestBody AppUser appUser){
+        return appUserService.saveAppUser(appUser);
+    }
+
+    @DeleteMapping("/delete-user/{id}")
+    void deleteAppUser(@PathVariable Long id){
+        appUserService.deleteAppUser(id);
+    }
 
 
 

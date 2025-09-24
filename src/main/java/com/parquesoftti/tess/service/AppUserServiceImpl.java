@@ -34,7 +34,22 @@ public class AppUserServiceImpl implements AppUserService{
 
     @Override
     public AppUser saveAppUser(AppUser appUser) {
-        return null;
+        if(appUser == null ){
+            return null;
+        }
+
+        if(appUser.getEmail() == null || appUser.getEmail().isEmpty() ){
+            return null;
+        }
+
+        if(appUser.getPasswordHash() == null || appUser.getPasswordHash().isEmpty() ){
+            return null;
+        }
+
+        if(appUser.getEnabled() == null  ){
+            return null;
+        }
+        return appUserRepository.save(appUser);
     }
 
     @Override
