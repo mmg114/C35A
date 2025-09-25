@@ -10,4 +10,6 @@ public interface AppUserService {
    Optional<AppUser> getAppUser(Long id);
    AppUser saveAppUser(AppUser appUser);
    void deleteAppUser(Long id);
+   AppUser updateAppUser(AppUser appUser,Long id);
+    Optional<AppUser> findByEmailAndEnabled(String email, Boolean enabled);
 }

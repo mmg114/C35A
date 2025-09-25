@@ -54,6 +54,33 @@ public class AppUserServiceImpl implements AppUserService{
 
     @Override
     public void deleteAppUser(Long id) {
+        if(id != null && id != 0){
+           appUserRepository.deleteById(id);
+        }
+    }
 
+    @Override
+    public AppUser updateAppUser(AppUser appUser,Long id) {
+
+        if(appUser == null || id == null ){
+            return null;
+        }
+
+        AppUser usuario = getAppUser(id).orElse(null);
+
+        if(usuario != null){
+            usuario.setUsername(appUser.getUsername());
+            usuario.setPasswordHash(appUser.getPasswordHash());
+            usuario.setEnabled(appUser.getEnabled());
+            return saveAppUser(usuario);
+        }else{
+            return null;
+        }
+
+    }
+
+    @Override
+    public Optional<AppUser> findByEmailAndEnabled(String email, Boolean enabled) {
+        return appUserRepository.findByEmailAndEnabled(email,enabled);
     }
 }
